@@ -5,28 +5,28 @@ var parse = require('./src/parser')
 function buildMessageFromAST(message, ast) {
   ast.map(function(entry) {
     var value;
-    var field = message.$type.getChild(entry.name)
+    var field = message.$type.fields[entry.name];
     if (entry.type === 'pair') {
       value = entry.value;
     } else if (entry.type === 'message') {
-      var ChildMessageClass = field.resolvedType.build();
-      var value = new ChildMessageClass();
+      var ChildMessageClass = field.resolvedType;
+      var value = ChildMessageClass.create();
       buildMessageFromAST(value, entry.values);
     }
 
     if (field.repeated) {
-      message.add(entry.name, value);
+      message[entry.name].push(value);
     } else {
-      message.set(entry.name, value);
+      message[entry.name] = value;
     }
   });
 };
 
 module.exports.encode = require('./src/encoder');
 
-module.exports.parse = function(builder, fqn, input) {
-  var MessageClass = builder.build(fqn)
-   , message = new MessageClass();
+module.exports.parse = function(root, fqn, input) {
+  var MessageClass = root.lookupType(fqn);
+  var message = MessageClass.create();
 
   var result = parse(input);
 
