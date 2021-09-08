@@ -4,8 +4,8 @@
   "description": "parse and encode text formatted protobuf messages",
   "main": "index.js",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/brotchie/protobuf-textformat"
+    "type": "git",
+    "url": "https://github.com/brotchie/protobuf-textformat"
   },
   "keywords": [
     "protobuf",
@@ -16,16 +16,16 @@
     "test": "mocha test"
   },
   "author": {
-      "name": "James Brotchie",
-      "email": "brotchie@gmail.com"
+    "name": "James Brotchie",
+    "email": "brotchie@gmail.com"
   },
   "license": "MIT",
   "dependencies": {
+    "lodash": "^4.17.21",
     "parsimmon": "^0.5.1",
-    "protobufjs": "git+https://github.com/brotchie/ProtoBuf.js.git#compiled",
-    "lodash": "^2.4.1"
+    "protobufjs": "git+https://github.com/brotchie/ProtoBuf.js.git#compiled"
   },
   "devDependencies": {
-    "mocha": "^2.0.1"
+    "mocha": "^9.1.1"
   }
 }
