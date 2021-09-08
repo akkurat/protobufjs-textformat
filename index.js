@@ -6,10 +6,16 @@ function buildMessageFromAST(message, ast) {
   ast.map(function(entry) {
     var value;
     var field = message.$type.fields[entry.name];
+    if (!field) {
+      return;
+    }
     if (entry.type === 'pair') {
       value = entry.value;
     } else if (entry.type === 'message') {
       var ChildMessageClass = field.resolvedType;
+      if (!ChildMessageClass) {
+        return;
+      }
       var value = ChildMessageClass.create();
       buildMessageFromAST(value, entry.values);
     }
