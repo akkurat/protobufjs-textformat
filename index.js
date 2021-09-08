@@ -22,8 +22,6 @@ function buildMessageFromAST(message, ast) {
   });
 };
 
-module.exports.encode = require('./src/encoder');
-
 module.exports.parse = function(root, fqn, input) {
   var MessageClass = root.lookupType(fqn);
   var message = MessageClass.create();
