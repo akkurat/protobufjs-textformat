@@ -1,6 +1,6 @@
 {
   "name": "protobufjs-textformat",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "parse text formatted protobuf messages",
   "main": "index.js",
   "repository": {
@@ -20,6 +20,17 @@
     "name": "James Brotchie",
     "email": "brotchie@gmail.com"
   },
+  "contributors": [
+    {
+      "name": "Aleksander Kmetec",
+      "url": "https://github.com/lexandera"
+    },
+    {
+      "name": "Moritz Vifian",
+      "url": "https://github.com/akkurat"
+    }
+  ],
+
   "license": "MIT",
   "dependencies": {
     "parsimmon": "^0.5.1"
