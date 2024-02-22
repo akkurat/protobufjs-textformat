@@ -1,11 +1,11 @@
 {
-  "name": "protobuf-textformat",
+  "name": "protobufjs-textformat",
   "version": "1.0.0",
   "description": "parse text formatted protobuf messages",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/brotchie/protobuf-textformat"
+    "url": "https://github.com/akkurat/protobufjs-textformat"
   },
   "keywords": [
     "protobuf",
