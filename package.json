@@ -1,6 +1,6 @@
 {
   "name": "protobufjs-textformat",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "parse text formatted protobuf messages",
   "main": "index.js",
   "repository": {
@@ -30,10 +30,9 @@
       "url": "https://github.com/akkurat"
     }
   ],
-
   "license": "MIT",
   "dependencies": {
-    "parsimmon": "^0.5.1"
+    "parsimmon": "^1.18.1"
   },
   "devDependencies": {
     "mocha": "^9.1.1",

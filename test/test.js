@@ -33,6 +33,7 @@ describe('parse googlefont', function() {
     const result = sut.parse(root, fqn, input), message = result.message;
 
     assert.equal(true, result.status);
+    assert.equal('Christian Robertson, Paratype, Font Bureau', message.designer)
     assert.equal('Roboto', message.name);
     assert.equal('italic', message.fonts[1].style);
     assert.equal(75.0, message.axes[0].min_value);

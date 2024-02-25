@@ -11,7 +11,8 @@ const regex = Parsimmon.regex
   , optWhitespace = Parsimmon.optWhitespace
   , lazy = Parsimmon.lazy
   , alt = Parsimmon.alt
-  , seq = Parsimmon.seq;
+  , seq = Parsimmon.seq
+  , sepBy1 = Parsimmon.sepBy1;
 
 const comment = regex(/#.+/).then(optWhitespace.atMost(1));
 const whitespace = optWhitespace.then(comment.atMost(1));
@@ -28,8 +29,8 @@ const stripFirstLast = function(x) {
 };
 
 const identifier = lexeme(regex(/[a-zA-Z_][0-9a-zA-Z_+-]*/));
-const doubleString = lexeme(regex(/\"([^\"\\]|\\.)*\"/).map(stripFirstLast));
-const singleString = lexeme(regex(/\'([^\'\\]|\\.)*\'/).map(stripFirstLast));
+const doubleString = lexeme(regex(/\"([^\"\\]|\\.)*\"/m).map(stripFirstLast));
+const singleString = lexeme(regex(/\'([^\'\\]|\\.)*\'/m).map(stripFirstLast));
 
 const number = lexeme(regex(/[.]?[0-9+-][0-9a-zA-Z_.+-]*/)).map(Number);
 const trueLiteral = lexeme(string('true')).result(true);
@@ -42,7 +43,13 @@ const message = seq(identifier, colon.times(0, 1).then(lbrace).then(expr).skip(r
                   return { type: 'message', name: message[0], values: message[1] };
                 });
 
-const value = alt(trueLiteral, falseLiteral, number, doubleString, singleString, identifier);
+const doubleMultiString = sepBy1(doubleString, whitespace)
+                .map(array => array.join(''));
+
+const singleMultiString = sepBy1(singleString, whitespace)
+                .map(array => array.join(''));
+
+const value = alt(trueLiteral, falseLiteral, number, doubleMultiString, singleMultiString, identifier);
 
 const pair = seq(identifier.skip(colon), value)
             .map(function(pair) {
