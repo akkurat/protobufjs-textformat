@@ -1,6 +1,6 @@
 {
   "name": "protobufjs-textformat",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "parse text formatted protobuf messages",
   "main": "index.js",
   "repository": {

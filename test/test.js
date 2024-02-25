@@ -40,4 +40,15 @@ describe('parse googlefont', function() {
     assert.equal('wght', message.axes[1].tag);
   });
 });
+describe('parse googlefont axis registry', function() {
+  it('should successfully load the axis registyr file format', async function() {
+    const fqn = 'AxisProto';
+    const input = fs.readFileSync('./test/monospace.textproto', 'utf-8');
+    
+    const root = await (new ProtoBuf.Root()).load('./test/axes.proto', { keepCase: true })
+    const result = sut.parse(root, fqn, input), message = result.message;
+
+    assert.equal(true, result.status);
+  });
+});
 
